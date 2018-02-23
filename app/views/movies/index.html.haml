@@ -5,10 +5,11 @@
   %thead
     %tr
       -# show movie title and release date
+      -#%th Movie Title
       %th{:class=>("hilite" if @sort_column == "title")}= link_to 'Movie Title', movies_path(:sort_by=>'title'), :id=>"title_header"
       %th Rating
-      %th{:class=>("hilite" if @sort_column == "release_date")}= link_to 'Release Date', movies_path(:sort_by=>'release_date'), :id=>"release_date_header"
       -#%th Release Date
+      %th{:class=>("hilite" if @sort_column == "release_date")}= link_to 'Release Date', movies_path(:sort_by=>'release_date'), :id=>"release_date_header"
       %th More Info
   %tbody
     - @movies.each do |movie|
