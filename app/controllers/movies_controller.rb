@@ -64,6 +64,21 @@ class MoviesController < ApplicationController
     if !@ratings
 	@ratings = Hash.new
     end
+
+    if @redirect
+	flash.keep
+	redirect_to movies_path :sort_by=>@sort_by, :ratings=>@ratings
+    end
+
+    if @ratings and @sort_by
+	@movies = Movie.where(:rating => @ratings.keys).order(@sort_by)
+    elsif @ratings
+	@movies = Movie.where(:rating => @ratings.keys)
+    elsif @sort_by
+	@movies = Movie.order(@sort_by)
+    else
+	@movies = Movie.all
+    end
   end
 
   def new
